@@ -2,6 +2,7 @@
 
 
 #run the MODULE of MAIN FILE and import mainfile as a library 
+import threading
 
 import code as x 
 #importing the main file("code" is the name of the file I have used) as a library 
@@ -37,13 +38,15 @@ x.modify("sastra",55)
 x.delete("sastra")
 #it deletes the respective key and its value from the database(memory is also freed)
 
+key_name = "sastra"
+value = 40
+timeout = 30
+
 #we can access these using multiple threads like
-t1=Thread(target=(create or read or delete),args=(key_name,value,timeout)) #as per the operation
+t1 = threading.Thread(target=(x.create or x.read or x.delete), args=(key_name, value, timeout)) #as per the operation
 t1.start()
-t1.sleep()
-t2=Thread(target=(create or read or delete),args=(key_name,value,timeout)) #as per the operation
+t2 = threading.Thread(target=(x.create or x.read or x.delete), args=(key_name, value, timeout)) #as per the operation
 t2.start()
-t2.sleep()
 #and so on upto tn
 
 #the code also returns other errors like 
